@@ -23,8 +23,17 @@ trajectory_controller:
     joints:
       - joint_1
 
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    open_loop_control: true
+    set_last_command_interface_value_as_state_on_activation: false
+
 velocity_controller:
   ros__parameters:
+    command_interfaces:
+      - velocity
+    state_interfaces:
+      - velocity  
     joints:
       - joint_1
 
