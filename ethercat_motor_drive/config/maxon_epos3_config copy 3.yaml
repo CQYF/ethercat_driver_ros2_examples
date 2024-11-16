@@ -19,13 +19,20 @@ rpdo:
           factor: 1048576, # 262144(分辨率)*4(减速比)
         } # 目标位置
       - {
-          index: 0x60B1,
+          index: 0x60ff,
           sub_index: 0,
           type: int32,
           command_interface: velocity,
           default: .nan,
           factor: 1048576,
-        } # 速度偏置（目标速度）
+        } # 目标速度
+      - {
+          index: 0x6071,
+          sub_index: 0,
+          type: int16,
+          command_interface: effort,
+          default: .nan,
+        } # 目标转矩
       - {index: 0x6060, sub_index: 0, type: int8, default: 8}  # 模式设置
 tpdo:
   - index: 0x1A00
@@ -33,6 +40,8 @@ tpdo:
       - { index: 0x603f, sub_index: 0, type: uint16 } # 错误码
       - { index: 0x6041, sub_index: 0, type: uint16 } # 状态字
       - { index: 0x6064, sub_index: 0, type: int32, state_interface: position, factor: 9.5367431641e-7 } # 位置反馈，factor是目标位置的factor的倒数
-      - { index: 0x606C, sub_index: 0, type: int32, state_interface: velocity, factor: 9.5367431641e-7 } # 速度反馈
+      - { index: 0x606C, sub_index: 0, type: int32, state_interface: velocity } # 速度反馈
+      - { index: 0x6077, sub_index: 0, type: int16, state_interface: effort } # 转矩反馈
       - {index: 0x6061, sub_index: 0, type: int8 }  # 模式显示
+      - { index: 0x60f4, sub_index: 0, type: int32 } # 位置偏差
       
